@@ -1,36 +1,20 @@
 ---
-title: Customize the Favicon
+title: 六角网格
 author: cotes
 date: 2019-08-11 00:34:00 +0800
 categories: [Blogging, Tutorial]
 tags: [favicon]
 ---
+# 几何学
+ 六边形是任何 6 边的多边形。正六边形的所有边的长度都相同。我假设我们在这里使用的所有六边形都是规则的。
+正六边形的大小可以用与边相接的内圆或与角相接的外圆来描述。在此页面上，我使用外圆的半径作为size. 宽度和高度根据两个圆的直径定义。
+## 间距
+接下来我们要把几个六边形拼在一起。
 
-The [favicons](https://www.favicon-generator.org/about/) of [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/) are placed in the directory `assets/img/favicons/`{: .filepath}. You may want to replace them with your own. The following sections will guide you to create and replace the default favicons.
+在里面平顶方向，相邻六边形中心之间的水平距离为horiz = 3/4 * width = 3/2 * size. 垂直距离为vert = height = sqrt(3) * size.
 
-## Generate the favicon
+在里面尖顶方向，相邻六边形中心之间的水平距离为horiz = width = sqrt(3) * size. 垂直距离为vert == 3/4 * height == 3/2 * size.
 
-Prepare a square image (PNG, JPG, or SVG) with a size of 512x512 or more, and then go to the online tool [**Real Favicon Generator**](https://realfavicongenerator.net/) and click the button <kbd>Select your Favicon image</kbd> to upload your image file.
+一些游戏使用像素艺术来绘制与正多边形不匹配的六边形，这些公式必须稍作调整。有关详细信息，请参阅实施指南。
 
-In the next step, the webpage will show all usage scenarios. You can keep the default options, scroll to the bottom of the page, and click the button <kbd>Generate your Favicons and HTML code</kbd> to generate the favicon.
-
-## Download & Replace
-
-Download the generated package, unzip and delete the following two from the extracted files:
-
-- `browserconfig.xml`{: .filepath}
-- `site.webmanifest`{: .filepath}
-
-And then copy the remaining image files (`.PNG`{: .filepath} and `.ICO`{: .filepath}) to cover the original files in the directory `assets/img/favicons/`{: .filepath} of your Jekyll site. If your Jekyll site doesn't have this directory yet, just create one.
-
-The following table will help you understand the changes to the favicon files:
-
-| File(s)             | From Online Tool                  | From Chirpy |
-|---------------------|:---------------------------------:|:-----------:|
-| `*.PNG`             | ✓                                 | ✗           |
-| `*.ICO`             | ✓                                 | ✗           |
-
->  ✓ means keep, ✗ means delete.
-{: .prompt-info }
-
-The next time you build the site, the favicon will be replaced with a customized edition.
+https://www.redblobgames.com/grids/hexagons/

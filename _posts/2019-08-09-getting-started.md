@@ -1,147 +1,206 @@
 ---
-title: Getting Started
-author: cotes
+title: Unity状态机
+author: east
 date: 2019-08-09 20:55:00 +0800
 categories: [Blogging, Tutorial]
 tags: [getting started]
 pin: true
 ---
 
-## Prerequisites
+# 感同身受
 
-Follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of the basic environment. [Git](https://git-scm.com/) also needs to be installed.
+假设我们在完成一个卷轴平台游戏。 现在的工作是实现玩家在游戏世界中操作的女英雄。 这就意味着她需要对玩家的输入做出响应。按B键她应该跳跃。简单实现如下：
+```c#
+void handleInput(Input input)
+{
+  if (input == PRESS_B)
+  {
+    yVelocity_ = JUMP_VELOCITY;
+    setGraphics(IMAGE_JUMP);
+  }
+}
+```
+看到漏洞了吗？
 
-## Installation
-
-### Creating a New Site
-
-There are two ways to create a new repository for this theme:
-
-- [**Using the Chirpy Starter**](#option-1-using-the-chirpy-starter) - Easy to upgrade, isolates irrelevant project files so you can focus on writing.
-- [**GitHub Fork**](#option-2-github-fork) - Convenient for custom development, but difficult to upgrade. Unless you are familiar with Jekyll and are determined to tweak or contribute to this project, this approach is not recommended.
-
-#### Option 1. Using the Chirpy Starter
-
-Sign in to GitHub and browse to [**Chirpy Starter**][starter], click the button <kbd>Use this template</kbd> > <kbd>Create a new repository</kbd>, and name the new repository `USERNAME.github.io`, where `USERNAME` represents your GitHub username.
-
-#### Option 2. GitHub Fork
-
-Sign in to GitHub to [fork **Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/fork), and then rename it to `USERNAME.github.io` (`USERNAME` means your username).
-
-Next, clone your site to local machine. In order to build JavaScript files later, we need to install [Node.js][nodejs], and then run the tool:
-
-```console
-$ bash tools/init
+没有东西阻止“空中跳跃”——当角色在空中时狂按B，她就会浮空。 简单的修复方法是给Heroine增加isJumping_布尔字段，追踪它跳跃的状态。然后这样做：
+```c#
+void Heroine::handleInput(Input input)
+{
+  if (input == PRESS_B)
+  {
+    if (!isJumping_)
+    {
+      isJumping_ = true;
+      // 跳跃……
+    }
+  }
+}
 ```
 
-> If you don't want to deploy your site on GitHub Pages, append option `--no-gh` at the end of the above command.
-{: .prompt-info }
-
-The above command will:
-
-1. Check out the code to the [latest tag][latest-tag] (to ensure the stability of your site: as the code for the default branch is under development).
-2. Remove non-essential sample files and take care of GitHub-related files.
-3. Build JavaScript files and export to `assets/js/dist/`{: .filepath }, then make them tracked by Git.
-4. Automatically create a new commit to save the changes above.
-
-### Installing Dependencies
-
-Before running local server for the first time, go to the root directory of your site and run:
-
-```console
-$ bundle
+接下来，当玩家按下下方向键时，如果角色在地上，我们想要她卧倒，而松开按键时站起来：
+```c++
+void Heroine::handleInput(Input input)
+{
+  if (input == PRESS_B)
+  {
+    // 如果没在跳跃，就跳起来……
+  }
+  else if (input == PRESS_DOWN)
+  {
+    if (!isJumping_)
+    {
+      setGraphics(IMAGE_DUCK);
+    }
+  }
+  else if (input == RELEASE_DOWN)
+  {
+    setGraphics(IMAGE_STAND);
+  }
+}
 ```
 
-## Usage
+这次看到漏洞了吗？
 
-### Configuration
-
-Update the variables of `_config.yml`{: .filepath} as needed. Some of them are typical options:
-
-- `url`
-- `avatar`
-- `timezone`
-- `lang`
-
-### Customizing Stylesheet
-
-If you need to customize the stylesheet, copy the theme's `assets/css/style.scss`{: .filepath} to the same path on your Jekyll site, and then add the custom style at the end of it.
-
-Starting with version `4.1.0`, if you want to overwrite the SASS variables defined in `_sass/addon/variables.scss`{: .filepath}, copy the main sass file `_sass/jekyll-theme-chirpy.scss`{: .filepath} into the `_sass`{: .filepath} directory in your site's source, then create a new file `_sass/variables-hook.scss`{: .filepath} and assign new value.
-
-### Customing Static Assets
-
-Static assets configuration was introduced in version `5.1.0`. The CDN of the static assets is defined by file `_data/assets/cross_origin.yml`{: .filepath }, and you can replace some of them according to the network conditions in the region where your website is published.
-
-Also, if you'd like to self-host the static assets, please refer to the [_chirpy-static-assets_](https://github.com/cotes2020/chirpy-static-assets#readme).
-
-### Running Local Server
-
-You may want to preview the site contents before publishing, so just run it by:
-
-```console
-$ bundle exec jekyll s
+通过这个代码，玩家可以：
+1. 按下键卧倒。
+2. 按B从卧倒状态跳起。
+3. 在空中放开下键。
+  
+英雄跳一半贴图变成了站立时的贴图。是时候增加另一个标识了……
+```c#
+void Heroine::handleInput(Input input)
+{
+  if (input == PRESS_B)
+  {
+    if (!isJumping_ && !isDucking_)
+    {
+      // 跳跃……
+    }
+  }
+  else if (input == PRESS_DOWN)
+  {
+    if (!isJumping_)
+    {
+      isDucking_ = true;
+      setGraphics(IMAGE_DUCK);
+    }
+  }
+  else if (input == RELEASE_DOWN)
+  {
+    if (isDucking_)
+    {
+      isDucking_ = false;
+      setGraphics(IMAGE_STAND);
+    }
+  }
+}
 ```
-
-Or run the site on Docker with the following command:
-
-```console
-$ docker run -it --rm \
-    --volume="$PWD:/srv/jekyll" \
-    -p 4000:4000 jekyll/jekyll \
-    jekyll serve
+下面，如果玩家在跳跃途中按下下方向键，英雄能够做跳斩攻击就太酷了：
+```c++
+void Heroine::handleInput(Input input)
+{
+  if (input == PRESS_B)
+  {
+    if (!isJumping_ && !isDucking_)
+    {
+      // 跳跃……
+    }
+  }
+  else if (input == PRESS_DOWN)
+  {
+    if (!isJumping_)
+    {
+      isDucking_ = true;
+      setGraphics(IMAGE_DUCK);
+    }
+    else
+    {
+      isJumping_ = false;
+      setGraphics(IMAGE_DIVE);
+    }
+  }
+  else if (input == RELEASE_DOWN)
+  {
+    if (isDucking_)
+    {
+      // 站立……
+    }
+  }
+}
 ```
+又是检查漏洞的时间了。找到了吗？
 
-After a few seconds, the local service will be published at _<http://127.0.0.1:4000>_.
+跳跃时我们检查了字段，防止了空气跳，但是速降时没有。又是另一个字段……
 
-## Deployment
+我们的实现方法很明显有错。 每次我们改动代码时，就破坏些东西。 我们需要增加更多动作——行走 都还没有加入呢——但以这种做法，完成之前就会造成一堆漏洞。
 
-Before the deployment begins, check out the file `_config.yml`{: .filepath} and make sure the `url` is configured correctly. Furthermore, if you prefer the [**project site**](https://help.github.com/en/github/working-with-github-pages/about-github-pages#types-of-github-pages-sites) and don't use a custom domain, or you want to visit your website with a base URL on a web server other than **GitHub Pages**, remember to change the `baseurl` to your project name that starts with a slash, e.g, `/project-name`.
+# 有限状态机前来救援
+在经历了上面的挫败之后，把桌子扫空，只留下纸笔，我们开始画流程图。 你给英雄每件能做的事情都画了一个盒子：站立，跳跃，俯卧，跳斩。 当角色在能响应按键的状态时，你从那个盒子画出一个箭头，标记上按键，然后连接到她变到的状态。
+祝贺，你刚刚建好了一个有限状态机。 它来自计算机科学的分支自动理论，那里有很多著名的数据结构，包括著名的图灵机。 FSMs是其中最简单的成员。
 
-Now you can choose _ONE_ of the following methods to deploy your Jekyll site.
+要点是：
 
-### Deploy by Using GitHub Actions
+1. 你拥有状态机所有可能状态的集合。 在我们的例子中，是站立，跳跃，俯卧和速降。
+  
+2. 状态机同时只能在一个状态。 英雄不可能同时处于跳跃和站立状态。事实上，防止这点是使用FSM的理由之一。
 
-There are a few things to get ready for.
+3. 一连串的输入或事件被发送给状态机。 在我们的例子中，就是按键按下和松开。
 
-- If you're on the GitHub Free plan, keep your site repository public.
-- If you have committed `Gemfile.lock`{: .filepath} to the repository, and your local machine is not running Linux, go the the root of your site and update the platform list of the lock-file:
+4. 每个状态都有一系列的转移，每个转移与输入和另一状态相关。 当输入进来，如果它与当前状态的某个转移相匹配，机器转换为所指的状态。
 
-  ```console
-  $ bundle lock --add-platform x86_64-linux
-  ```
+举个例子，在站立状态时，按下下方向键转换为俯卧状态。 在跳跃时按下下方向键转换为速降。 如果输入在当前状态没有定义转移，输入就被忽视。
 
-Next, configure the _Pages_ service.
+这就是核心部分的全部了：状态，输入，和转移。 你可以用一张流程图把它画出来。不幸的是，编译器不认识流程图， 所以我们如何实现一个？ GoF的状态模式是一个方法——我们会谈到的——但先从简单的开始。
 
-1. Browse to your repository on GitHub. Select the tab _Settings_, then click _Pages_ in the left navigation bar. Then, in the **Source** section (under _Build and deployment_), select [**GitHub Actions**][pages-workflow-src] from the dropdown menu.
+# 枚举和分支
+Heroine类的问题在于它不合法地捆绑了一堆布尔量： isJumping_和isDucking_不会同时为真。 但有些标识同时只能有一个是true，这提示你真正需要的其实是enum（枚举）。
 
-2. Push any commits to GitHub to trigger the _Actions_ workflow. In the _Actions_ tab of your repository, you should see the workflow _Build and Deploy_ running. Once the build is complete and successful, the site will be deployed automatically.
-
-At this point, you can go to the URL indicated by GitHub to access your site.
-
-### Manually Build and Deploy
-
-On self-hosted servers, you cannot enjoy the convenience of **GitHub Actions**. Therefore, you should build the site on your local machine and then upload the site files to the server.
-
-Go to the root of the source project, and build your site as follows:
-
-```console
-$ JEKYLL_ENV=production bundle exec jekyll b
+在这个例子中的enum就是FSM的状态的集合，所以让我们这样定义它：
+```c++
+enum State
+{
+  STATE_STANDING,
+  STATE_JUMPING,
+  STATE_DUCKING,
+  STATE_DIVING
+};
 ```
+不需要一堆标识，Heroine只有一个state_状态。 这里我们同时改变了分支顺序。在前面的代码中，我们先判断输入，然后 判断状态。 这让处理某个按键的代码集中到了一处，但处理某个状态的代码分散到了各处。 我们想让处理状态的代码聚在一起，所以先对状态做分支。这样的话：
 
-Or build the site on Docker:
+```c++
+void Heroine::handleInput(Input input)
+{
+  switch (state_)
+  {
+    case STATE_STANDING:
+      if (input == PRESS_B)
+      {
+        state_ = STATE_JUMPING;
+        yVelocity_ = JUMP_VELOCITY;
+        setGraphics(IMAGE_JUMP);
+      }
+      else if (input == PRESS_DOWN)
+      {
+        state_ = STATE_DUCKING;
+        setGraphics(IMAGE_DUCK);
+      }
+      break;
 
-```console
-$ docker run -it --rm \
-    --env JEKYLL_ENV=production \
-    --volume="$PWD:/srv/jekyll" \
-    jekyll/jekyll \
-    jekyll build
+    case STATE_JUMPING:
+      if (input == PRESS_DOWN)
+      {
+        state_ = STATE_DIVING;
+        setGraphics(IMAGE_DIVE);
+      }
+      break;
+
+    case STATE_DUCKING:
+      if (input == RELEASE_DOWN)
+      {
+        state_ = STATE_STANDING;
+        setGraphics(IMAGE_STAND);
+      }
+      break;
+  }
+}
 ```
-
-Unless you specified the output path, the generated site files will be placed in folder `_site`{: .filepath} of the project's root directory. Now you should upload those files to the target server.
-
-[nodejs]: https://nodejs.org/
-[starter]: https://github.com/cotes2020/chirpy-starter
-[pages-workflow-src]: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow
-[latest-tag]: https://github.com/cotes2020/jekyll-theme-chirpy/tags
