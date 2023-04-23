@@ -6,7 +6,7 @@ categories: [Blogging, Tutorial]
 tags: [google analytics, pageviews]
 ---
 
-# 抗锯齿 (Anti-aliasing)
+# 抗锯齿2 (Anti-aliasing)
  抗锯齿效果使图形更加平滑。锯齿是线条出现锯齿状或“楼梯”外观的效果（如下面左图所示）。如果图形输出设备没有足够高的分辨率来显示直线，则会发生这种情况。
 
 抗锯齿用中间色调将这些锯齿状线条包围起来，从而可以降低锯齿明显程度。虽然这种做法减轻了线条的锯齿状外观，但也会使它们变得更模糊。
