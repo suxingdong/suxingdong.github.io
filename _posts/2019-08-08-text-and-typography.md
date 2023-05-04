@@ -28,7 +28,8 @@ AssetBundle是Unity提供的一种用于存储资源的压缩格式的存档文�
 ![image](./assetbundle/asstebundle1.jpg)
 
 - 第二种：通常需要制定打包策略，使用AssetImporter整理资源对其进行打包
-```c#
+
+```C#
 [System.Serializable]
 public class PackageItem
 {
@@ -132,7 +133,8 @@ public static void open()
 
 
 单个文件打包，通过AssetImporter.GetAtPath获得AssetImporter，设置assetBundleName。
-```c#
+
+```C#
     //文件打包
     public bool PackFile(string res)
     {
@@ -148,12 +150,14 @@ public static void open()
 ```
 
 获得所有的AB包：
-```c#
+
+```C#
 string[] assetBundleNames = AssetDatabase.GetAllAssetBundleNames();
 ```
 
 调用打包api：BuildPipeline.BuildAssetBundles
-```c#
+
+```C#
 using UnityEditor;
 using UnityEngine;
 using System.IO;
@@ -200,7 +204,8 @@ public class CreateAssetBundles
 ## 加载资源
 
 1. 加载依赖文件
-```c#
+
+```C#
 private void Start() { 
    
      AssetBundle.LoadFromFile("Assets/AssetBundles/share.u3d"); // 加载依赖包
@@ -211,7 +216,8 @@ private void Start() {
  }
 ```
 2. 加载本地的 AB 包
-```c#
+
+```C#
 using System.IO;
 using UnityEngine;
 
