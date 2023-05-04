@@ -28,7 +28,7 @@ AssetBundle是Unity提供的一种用于存储资源的压缩格式的存档文�
 ![image](./assetbundle/asstebundle1.jpg)
 
 - 第二种：通常需要制定打包策略，使用AssetImporter整理资源对其进行打包
-```C#
+```c#
 [System.Serializable]
 public class PackageItem
 {
