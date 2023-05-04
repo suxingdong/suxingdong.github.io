@@ -8,7 +8,7 @@ math: true
 mermaid: true
 image:
   path: /commons/devices-mockup.png
-  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
+  lqip: 
   alt: Responsive rendering of Chirpy theme on multiple devices.
 ---
 # AssetBundle介绍
@@ -145,7 +145,7 @@ public static void open()
         importer.assetBundleName = res + abExtens;
         return true;
     }
-~~~
+```
 
 获得所有的AB包：
 ```c#
@@ -194,13 +194,13 @@ public class CreateAssetBundles
 }
 
 
-~~~
+```
 
 
 ## 加载资源
 
 1. 加载依赖文件
-~~~c#
+```c#
 private void Start() { 
    
      AssetBundle.LoadFromFile("Assets/AssetBundles/share.u3d"); // 加载依赖包
