@@ -1,7 +1,7 @@
 ---
-title: Unity状态机
+title: Unity状态机1
 author: east
-date: 2019-08-09 20:55:00 +0800
+date: 2022-02-05 20:55:00 +0800
 categories: [Blogging, Tutorial]
 tags: [getting started]
 pin: true
