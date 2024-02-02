@@ -1,6 +1,6 @@
 ---
 title: Unity 抗锯齿
-author: sille_bille
+author: East.Su
 date: 2021-01-03 18:32:00 -0500
 categories: [Blogging, Unity]
 tags: [google analytics, pageviews]
@@ -8,7 +8,7 @@ tags: [google analytics, pageviews]
 
 ---
 title: Unity 抗锯齿
-author: sille_bille
+author: East.Su
 date: 2021-01-03 18:32:00 -0500
 categories: [Blogging, Unity]
 tags: [google analytics, pageviews]

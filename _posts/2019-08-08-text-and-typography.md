@@ -1,6 +1,6 @@
 ---
 title: AssetBundle 资源打包
-author: east.su
+author: East.Su
 date: 2019-08-08 11:33:00 +0800
 categories: [Blogging, Unity, C#]
 tags: [typography]

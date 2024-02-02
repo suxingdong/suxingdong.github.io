@@ -1,6 +1,6 @@
 ---
 title: 六角网格
-author: cotes
+author: East.Su
 date: 2019-08-11 00:34:00 +0800
 categories: [Blogging, Tutorial]
 tags: [favicon]
