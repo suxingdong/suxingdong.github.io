@@ -1,5 +1,5 @@
 ---
-title: python 暴力破解压缩文件
+title: Python暴力破解压缩文件
 author: East.Su
 date: 2024-02-25 14:00:00 +0800
 categories: [Python, Password, zip, rar]
