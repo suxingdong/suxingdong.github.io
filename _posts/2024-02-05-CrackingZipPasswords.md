@@ -1,10 +1,16 @@
 ---
-title: Fix64
+title: python 暴力破解压缩文件
 author: East.Su
-date: 2019-08-11 00:34:00 +0800
+date: 2024-02-25 14:00:00 +0800
 categories: [Python, Password, zip, rar]
 tags: [Python]
 ---
+# 安装
+```
+pip install patool
+pip install product
+pip install zipfile
+```
 # Python Code
 ```py
 import zipfile
@@ -12,9 +18,6 @@ import itertools
 import string
 import subprocess
 from itertools import product
-from pyunpack import Archive
-import rarfile
-import unrar
 import patoolib
 
 def check_rar_password5(rar_file_path, password):
