@@ -46,7 +46,10 @@ eg. 1.5f二进制表示
 }");
             }
         }
+
 ```
+
+
 ```C#
 internal static void GenerateTanLut()
         {
@@ -92,6 +95,7 @@ static void Main(string[] args)
     GenerateSinLut();
     GenerateTanLut();
 }
+
 ```
 
 # Fix64.cs
