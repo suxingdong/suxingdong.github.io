@@ -1,7 +1,7 @@
 ---
 title: Unity Animancer
 author: East.Su
-date: 2024-02-14 18:32:00 -0500
+date: 2023-02-14 18:32:00 -0500
 categories: [Animancer, Unity]
 tags: [Animancer]
 ---
