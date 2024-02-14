@@ -13,7 +13,7 @@ eg. 1.5f二进制表示
 0 01111111 10000000000000000000000
 ![image](./image-3.png)
 
-# 生成Sin 查表Sin数据
+# 生成Sin 查表数据
 ```c#
  internal static void GenerateSinLut()
         {
@@ -49,7 +49,7 @@ eg. 1.5f二进制表示
 
 ```
 
-# 生成Sin 查表Tan数据
+# 生成Tan 查表数据
 ```c#
 internal static void GenerateTanLut()
         {
