@@ -14,6 +14,15 @@ eg. 1.5f二进制表示
 ![image](image-3.png)
 
 # 生成Sin 查表Sin数据
+```c++
+enum State
+{
+  STATE_STANDING,
+  STATE_JUMPING,
+  STATE_DUCKING,
+  STATE_DIVING
+};
+```
 
 ```C#
  internal static void GenerateSinLut()
