@@ -1132,5 +1132,4 @@ namespace FixMath.NET
 }
 
 ```
-
-https://github.com/asik/FixedMath.Net.git
+GitHub: [https://github.com/asik/FixedMath.Net.git](https://github.com/asik/FixedMath.Net.git)
