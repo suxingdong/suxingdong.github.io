@@ -24,7 +24,7 @@ enum State
 };
 ```
 
-```C#
+```CSharp
  internal static void GenerateSinLut()
         {
             using (var writer = new StreamWriter("Fix64SinLut.cs"))
