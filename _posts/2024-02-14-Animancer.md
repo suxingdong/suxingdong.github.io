@@ -8,9 +8,6 @@ tags: [Animancer]
 
 [官方文档] (https://kybernetik.com.au/animancer/docs/introduction/)
 
-![Video](https://www.bilibili.com/video/BV1yV411m7Y2/?spm_id_from=333.337.search-card.all.click)
-
-
-<video width="320" height="240" controls>
-  <source src="video.mov" type="video/mp4">
+<video width="640" height="480" controls>
+  <source src="movie480.mp4" type="video/mp4">
 </video>
