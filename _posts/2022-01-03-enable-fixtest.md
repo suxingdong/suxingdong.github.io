@@ -24,7 +24,7 @@ enum State
 };
 ```
 
-```CSharp
+```c#
  internal static void GenerateSinLut()
         {
             using (var writer = new StreamWriter("Fix64SinLut.cs"))
@@ -60,7 +60,7 @@ enum State
 ```
 
 # 生成Sin 查表Tan数据
-```C#
+```c#
 internal static void GenerateTanLut()
         {
             using (var writer = new StreamWriter("Fix64TanLut.cs"))
@@ -99,7 +99,7 @@ internal static void GenerateTanLut()
 ```
 
 # 主函数
-```C#
+```c#
 static void Main(string[] args)
 {
     GenerateSinLut();
@@ -109,7 +109,7 @@ static void Main(string[] args)
 ```
 
 # Fix64.cs
-```C#
+```c#
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
