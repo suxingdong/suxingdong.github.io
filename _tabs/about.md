@@ -6,9 +6,9 @@ order: 4
 
 # 心之形
 
-<video width="640" height="480" controls>
-  <source src="/_tabs/movie480.mp4" type="video/mp4">
+<video class="md-video" width="640" height="480" controls>
+  <source poster="fcLNPl5AR0A87kzlZ9WK.jpg" src="movie480.mp4" type="video/mp4">
 </video>
- 
 
-<video src="/_tabs/movie480.mp4" controls="controls" width="500" height="300"></video>
+
+
