@@ -6,7 +6,7 @@ categories: [Unity, Fix64]
 tags: [Unity]
 ---
 # 什么是定点数
- 了解定点数之前，先了解一下浮点数Float(参考网站 https://blog.csdn.net/jiaoyangwm/article/details/129296459)
+ 了解定点数之前，先了解一下浮点数Float(参考网站 (https://blog.csdn.net/jiaoyangwm/article/details/129296459))
 ![image](./image-2.png)
 eg. 1.5f二进制表示
 ![image](./image-1.png)
