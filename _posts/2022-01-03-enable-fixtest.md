@@ -6,12 +6,25 @@ categories: [Unity, Fix64]
 tags: [Unity]
 ---
 # 什么是定点数
- 了解定点数之前，先了解一下浮点数Float(参考网站 (https://blog.csdn.net/jiaoyangwm/article/details/129296459))
-  ![alt text](image-2.png)
- eg. 1.5f二进制表示
-  ![alt text](image-1.png)
- 0 01111111 10000000000000000000000
-  ![alt text](image-3.png)
+ 
+## 浮点数 [https://blog.csdn.net/jiaoyangwm/article/details/129296459](https://blog.csdn.net/jiaoyangwm/article/details/129296459)
+## 定点数：
+
+### 作用：
+    在帧同步过程中，需要使用浮点数，浮点数在不同平台的精度不同会产生误差，采用定点数代替浮点数来保证所以平台运算结果确定性
+### 原理
+    固定计算机中小数点的位置    
+    整数+小数  
+    1.5(Int) = 1*2^32 + 5;
+    25.125(Int) = 25*2^32 + 125;
+ ### 基本实现
+    采用 RawValue(long 64bit类型)32位整数+32位小数
+    Int转换位定点数 RawValue = value * 2^32;
+    Float位定点数 RawValue = value * 2^32;
+    - 定点数加法：RawValue+RawValue
+    - 定点数减法：RawValue-RawValue
+    - 定点数乘法：(RawValue*RawValue)/(2^32) 实际算法需要优化
+    - 定点数除法：(RawValue/RawValue)*(2^32) 实际算法需要优化
 
 # 生成Sin 查表数据
 ```c#
