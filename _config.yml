@@ -20,7 +20,7 @@ timezone: Asia/Shanghai
 
 title: East.Su # the main title
 
-tagline: 天道生生不已，仁者自强不息 # it will display as the sub-title
+tagline: Unity 编辑部 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   Grade.
@@ -117,7 +117,7 @@ assets:
 pwa:
   enabled: true # the option for PWA feature
 
-paginate: 10
+paginate: 6
 
 # ------------ The following options are not recommended to be modified ------------------
 
