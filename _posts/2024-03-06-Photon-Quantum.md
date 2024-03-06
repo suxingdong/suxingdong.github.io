@@ -30,6 +30,7 @@ tags: [PhotonEngine]
 Quantum是采用ECS框架，ECS独立于UnityEngine被放在quantum_code项目中,通过dsl生成component，这些组件通过unity中EntityPrototype挂在在角色身上，系统(继承SystemMainThread)通过SystemSetup注册到Core.cs, Quantum引擎回回调这些System函数。
 
 #### 通过DSL生成数据类代码
+<<<<<<< HEAD
 1. 注册账号 生成appid
 2. 下载测试案例 (https://dashboard.photonengine.com/zh-cn/download/quantum/quantum-100-2.1.4.zip)
 3. 解压文件quantum-100-2.1.4.zip，将quantum-100-2.1.4\tools\codeintegration_unity内容全部复制到quantum-100-2.1.4\quantum_code\quantum.code
@@ -41,6 +42,20 @@ Quantum是采用ECS框架，ECS独立于UnityEngine被放在quantum_code项目�
 	<None Include="Oof\rab.qtn" />
 </ItemGroup>
 7. 创建qtn文件
+=======
+	1. 注册账号 生成appid
+	2. 下载测试案例 (https://dashboard.photonengine.com/zh-cn/download/quantum/quantum-100-2.1.4.zip)
+	3. 解压文件quantum-100-2.1.4.zip，将quantum-100-2.1.4\tools\codeintegration_unity内容全部复制到quantum-100-2.1.4\quantum_code\quantum.code
+	4. 在quantum_unity/Packages/manifest.json中添加本地配置包配置 "com.exitgames.photonquantumcode": "file:../../quantum_code/quantum.code"
+	5. 删除 quantum_unity/Assets/Photon/Quantum/Assemblies/quantum.code.dll
+	6. quantum-100-2.1.4\quantum_code\quantum.code\quantum.code.csproj 添加下面代码
+		<ItemGroup>
+			<None Include="Foo\bar.qtn" />
+			<None Include="Oof\rab.qtn" />
+		</ItemGroup>
+	7. 创建qtn文件
+   
+>>>>>>> 32ab6d7121c9d6a9cc2a7cfa68f2dfe67d3b198d
 ```c#
 	component Action
 		{
@@ -48,8 +63,13 @@ Quantum是采用ECS框架，ECS独立于UnityEngine被放在quantum_code项目�
 			FP Power;
 		}
 ```
+<<<<<<< HEAD
 8. cmd运行 D:\quantum-100-2.1.4/tools/codegen/quantum.codegen.host.exe D:\quantum-100-2.1.4\quantum_code\quantum.code 
 9. 打开quantum_code.sln 生成dll文件，开发阶段可以不用生成
+=======
+	8. cmd运行 D:\quantum-100-2.1.4/tools/codegen/quantum.codegen.host.exe D:\quantum-100-2.1.4\quantum_code\quantum.code 
+	9. 打开quantum_code.sln 生成dll文件，开发阶段可以不用生成
+>>>>>>> 32ab6d7121c9d6a9cc2a7cfa68f2dfe67d3b198d
 ![alt text](/assets/image-8.png)
 	1. 使用Unity打开quantum_unity 生qtn代码
 ![alt text](/assets/image-6.png)
