@@ -8,6 +8,8 @@ tags: [PhotonEngine]
 
  [官网](https://dashboard.photonengine.com/zh-cn)
  
+ <iframe width="640" height="390" src="https://www.youtube.com/embed/oVqbPnG70qc" title="Hello Quantum 2.0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 # <font size=40>Quantum</font>
 + 广泛使用于RTS，MOBA，格斗动作，体育运动类游戏。
 + 价格：
@@ -25,11 +27,11 @@ tags: [PhotonEngine]
 
 
 ### ECS
-	Quantum是采用ECS框架，ECS独立于UnityEngine被放在quantum_code项目中,通过dsl生成component，这些组件通过unity中EntityPrototype挂在在角色身上，系统(继承SystemMainThread)通过SystemSetup注册到Core.cs, Quantum引擎回回调这些System函数。
+Quantum是采用ECS框架，ECS独立于UnityEngine被放在quantum_code项目中,通过dsl生成component，这些组件通过unity中EntityPrototype挂在在角色身上，系统(继承SystemMainThread)通过SystemSetup注册到Core.cs, Quantum引擎回回调这些System函数。
 
 #### 通过DSL生成数据类代码
 	1. 注册账号 生成appid
-	2. 下载测试按钮 (https://dashboard.photonengine.com/zh-cn/download/quantum/quantum-100-2.1.4.zip)
+	2. 下载测试案例 (https://dashboard.photonengine.com/zh-cn/download/quantum/quantum-100-2.1.4.zip)
 	3. 解压文件quantum-100-2.1.4.zip，将quantum-100-2.1.4\tools\codeintegration_unity内容全部复制到quantum-100-2.1.4\quantum_code\quantum.code
 	4. 在quantum_unity/Packages/manifest.json中添加本地配置包配置 "com.exitgames.photonquantumcode": "file:../../quantum_code/quantum.code"
 	5. 删除 quantum_unity/Assets/Photon/Quantum/Assemblies/quantum.code.dll
@@ -47,19 +49,21 @@ tags: [PhotonEngine]
 			FP Power;
 		}
 ```
-	1. cmd运行 D:\quantum-100-2.1.4/tools/codegen/quantum.codegen.host.exe D:\quantum-100-2.1.4\quantum_code\quantum.code 
-	2. 打开quantum_code.sln 生成dll文件，开发阶段可以不用生成
+	8. cmd运行 D:\quantum-100-2.1.4/tools/codegen/quantum.codegen.host.exe D:\quantum-100-2.1.4\quantum_code\quantum.code 
+	9. 打开quantum_code.sln 生成dll文件，开发阶段可以不用生成
 ![alt text](/assets/image-8.png)
 	1. 使用Unity打开quantum_unity 生qtn代码
 ![alt text](/assets/image-6.png)
 
 #### 组件 (Components)
-+ 自定义组件 通过dsl生成
-	component Action
-	{
++ 自定义组件 通过dsl生成  
+```c#
+	component Action  
+	{ 
 		FP Cooldown;
 		FP Power;
 	}
+```	
 	生成组件名：EntityComponentAction
 + 系统组件 无状态物理引擎 PhysicsCollider、PhysicsBody、PhysicsCallbacks、PhysicsJoints （2D/3D） 
 + 系统组件 基于导航网格的路径查找和移动 PathFinderAgent、SteeringAgent、AvoidanceAgent、AvoidanceObstacle：。
