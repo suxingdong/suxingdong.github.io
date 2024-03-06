@@ -9,6 +9,20 @@ tags: [PhotonEngine]
  [官网](https://dashboard.photonengine.com/zh-cn)
  
 # <font size=40>Quantum</font>
++ 广泛使用于RTS，MOBA，格斗动作，体育运动类游戏。
++ 价格：
+  1. Public Cloud(公共云)
+    a. 免费20个ccu。    
+	b. $95 提供12个月100个ccu预估支持40,000个用户。   
+	c. $1,250 提供12个月100个ccu预估支持40,000个用户。  
+	d. $ 2,500 提供12个月1000个ccu预估支持400,000个用户。  
+	f. $ 5,000 提供12个月2000个ccu预估支持800,000个用户。  
+
+  2. Premium Cloud(高性能云)   
+	  $1,000  提供1个月2000个ccu。
+  3. Self-host(本地服务器)
+	需要是Gaming Circle，获取Free Development License
+
 
 ### ECS
 	Quantum是采用ECS框架，ECS独立于UnityEngine被放在quantum_code项目中,通过dsl生成component，这些组件通过unity中EntityPrototype挂在在角色身上，系统(继承SystemMainThread)通过SystemSetup注册到Core.cs, Quantum引擎回回调这些System函数。
