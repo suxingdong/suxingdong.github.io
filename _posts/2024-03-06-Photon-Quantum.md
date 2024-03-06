@@ -1,7 +1,7 @@
 ---
 title: Unity PhotonEngine-Quantum
 author: East.Su
-date: 2023-02-18 16:23:00 +0800
+date: 2024-03-06 17:55:00 +0800
 categories: [Unity, Act]
 tags: [PhotonEngine]
 ---
@@ -50,8 +50,8 @@ tags: [PhotonEngine]
  
 
 #### 游戏逻辑 Systems 
-+ SystemMainThread
-+ SystemMainThreadFilter<T> ,可以关注需要的内容
++ 继承SystemMainThread
++ 继承SystemMainThreadFilter<T> ,可以关注需要的内容
 + System需要通过SystemSetup:CreateSystems需要将数据放入Core.cs   
 + Systems通过Update从Frame中获得需要的数据：f.Unsafe.TryGetPointer
   
@@ -75,7 +75,7 @@ public unsafe class MovementSystem : SystemMainThreadFilter<MovementSystem.Filte
 	
 	public override void Update(Frame frame, ref Filter filter)
 	{
-
+		//frame.Unsafe.GetPointer<PlayerCharacter>(entity);
 	}
 }
 ```
